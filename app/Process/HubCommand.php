@@ -44,7 +44,7 @@ class HubCommand implements GitHubInterface
             throw new \Exception('Repository already cloned: '.$path);
         }
 
-        $command = $this->process->command('hub clone '.$repo.' '.$path);
+        $command = $this->process->command('hub clone '.$repo.' '.$path.'&& cd '.$path.' && git checkout master');
         $command->run($output = new Output($command));
 
         return $output;
