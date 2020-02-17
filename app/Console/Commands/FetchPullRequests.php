@@ -46,16 +46,8 @@ class FetchPullRequests extends Command
      */
     public function handle(GitHubInterface $command)
     {
-        $output = Cache::remember(
-            'pull',
-            600,
-            function () use ($command) {
-                $output = $command->getMergedPr('laravel/framework');
-                $this->logTask('getMergedPr', $output);
-
-                return $output;
-            }
-        );
+        $output = $command->getMergedPr('laravel/framework');
+        $this->logTask('getMergedPr', $output);
 
         $pullRequests = [];
         foreach (explode(PHP_EOL, $output) as $line) {
