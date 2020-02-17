@@ -32,4 +32,9 @@ class PullRequest extends Model
         return $this->pr_merged_at->diffInHours(Carbon::today()) < 24;
     }
 
+    public function ScopeLatestMerged($query)
+    {
+        return $query->orderByDesc('pr_merged_at');
+    }
+
 }

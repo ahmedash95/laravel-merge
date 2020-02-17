@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function __invoke() {
-    	$pullRequests = PullRequest::latest()->simplePaginate(20);
+
+    	$pullRequests = PullRequest::latestMerged()->simplePaginate(20);
 
     	return view('home',[
     		'pullRequests' => $pullRequests,
