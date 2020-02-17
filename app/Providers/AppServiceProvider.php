@@ -9,6 +9,8 @@ use App\Process\HubCommand;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Process\Process;
+use App\Process\Process as AppProcess;
+use Symfony\Component\Filesystem\Filesystem;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,13 @@ class AppServiceProvider extends ServiceProvider
             ]);
 
             return new Api($client);
+        });
+
+        $this->app->bind(GitHubInterface::class,function(){
+            $process = $this->app->make(AppProcess::class);
+            $fileSystem = $this->app->make(Filesystem::class);
+            $path = base_path(config('services.github.clone_path','/tmp'));
+            return new HubCommand($process,$fileSystem,$path);
         });
     }
 

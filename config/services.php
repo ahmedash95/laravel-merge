@@ -37,7 +37,8 @@ return [
         'redirect' => 'http://localhost:8000/login/callback',
         // Api token
         'base' => env('GITHUB_BASE','https://api.github.com/'),
-        'token' => env('GITHUB_TOKEN',null)
+        'token' => env('GITHUB_TOKEN',null),
+        'clone_path' => env('CLONE_PATH'),
     ],
 
 ];
