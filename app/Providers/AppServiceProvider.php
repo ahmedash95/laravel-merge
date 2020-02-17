@@ -21,7 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(GitHubInterface::class,HubCommand::class);
         $this->app->bind(GitHubAPI::class,function (){
             $config = config('services.github');
             $client = HttpClient::createForBaseUri($config['base'],[
