@@ -2,11 +2,16 @@
 
 namespace App;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PullRequest extends Model
 {
     public $guarded = [];
+
+    public $casts = [
+        'pr_merged_at' => 'datetime',
+    ];
 
     public const blackListTitles = [
         'Apply fixes from StyleCI',
@@ -20,6 +25,11 @@ class PullRequest extends Model
     public function getRepo(): string
     {
         return 'laravel/framework';
+    }
+
+    public function isToday()
+    {
+        return $this->pr_merged_at->diffInHours(Carbon::today()) < 24;
     }
 
 }
