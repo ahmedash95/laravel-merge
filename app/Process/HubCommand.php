@@ -45,7 +45,7 @@ class HubCommand implements GitHubInterface
         }
 
         $command = $this->process->command('hub clone '.$repo.' '.$path);
-        $command->run($output = new Output());
+        $command->run($output = new Output($command));
 
         return $output;
     }
