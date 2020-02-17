@@ -46,6 +46,7 @@ class LaravelUpdate extends Command
             $output = $command->clone($this->repo);
             $this->logTask('clone', $output);
         } catch (\Exception $e) {
+            logger($e->getMessage());
         }
 
         $output = $command->pull($this->repo);
