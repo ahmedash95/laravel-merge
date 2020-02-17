@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\PullRequest;
-use App\Jobs\PullRequestViewJob;
 use Illuminate\Http\Request;
+use App\Jobs\PullRequestViewJob;
 
 class HomeController extends Controller
 {
+
+    public const CACHE_TTL = 10080;
+
     public function __invoke() {
 
     	$pullRequests = PullRequest::latestMerged()->simplePaginate(20);
@@ -19,7 +23,10 @@ class HomeController extends Controller
 
     public function redirect($id)
     {
-    	$pr = PullRequest::findOrFail($id);
+    	$pr = Cache::remember('pr.'.$id,self::CACHE_TTL,function() use ($id) {
+            return PullRequest::findOrFail($id);
+        });
+
     	$userId = optional(auth()->user())->id;
     	
     	PullRequestViewJob::dispatch($pr->id,$userId);
