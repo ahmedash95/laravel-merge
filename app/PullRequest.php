@@ -32,7 +32,7 @@ class PullRequest extends Model
 
     public function isToday()
     {
-        return $this->pr_merged_at->diffInHours(Carbon::today()) < 24;
+        return $this->pr_merged_at->format('Y-m-d') === Carbon::today()->format('Y-m-d');
     }
 
     public function ScopeLatestMerged($query)
