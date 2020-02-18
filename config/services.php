@@ -34,7 +34,7 @@ return [
         // Socialite
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/login/callback',
+        'redirect' => env('GITHUB_REDIRECT_CALLBACK','http://localhost:8000/login/callback'),
         // Api token
         'base' => env('GITHUB_BASE','https://api.github.com/'),
         'token' => env('GITHUB_TOKEN',null),
