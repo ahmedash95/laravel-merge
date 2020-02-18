@@ -20,8 +20,7 @@ class TweetNewPRMerged extends Notification
 
     public function toTwitter($pullRequest)
     {
-        $url = route('pr_view', ['id' => $pullRequest->id]);
-        $message = sprintf('%s by %s. %s', $pullRequest->title, $pullRequest->author_name, $url);
+        $message = sprintf('%s by %s. %s', $pullRequest->title, $pullRequest->author_name, $pullRequest->url);
 
         return new TwitterStatusUpdate($message);
     }
