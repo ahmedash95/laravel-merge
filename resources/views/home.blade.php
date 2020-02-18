@@ -8,7 +8,16 @@
 
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93950970-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-93950970-2');
+        </script>
     </head>
     <body class="bg-gray-300">
         <div id="container" class="w-2/4 m-auto my-16">
@@ -37,9 +46,9 @@
                     </div>
                     <div class="flex justify-between">
                         <div class="flex items-center mt-4">
-                            <img 
-                                class="w-10 h-10 rounded-full mr-4 shadow-lg" 
-                                src="{{ $pr->author_photo }}" 
+                            <img
+                                class="w-10 h-10 rounded-full mr-4 shadow-lg"
+                                src="{{ $pr->author_photo }}"
                                 alt="{{ $pr->author_name }}"
                             >
                             <div class="text-sm">
