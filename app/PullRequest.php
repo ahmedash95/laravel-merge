@@ -40,4 +40,8 @@ class PullRequest extends Model
         return $query->orderByDesc('pr_merged_at');
     }
 
+    public function author() {
+        return $this->belongsTo(PullRequestAuthor::class,'author_id');
+    }
+
 }

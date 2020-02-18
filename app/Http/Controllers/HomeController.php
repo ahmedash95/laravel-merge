@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function __invoke() {
 
-    	$pullRequests = PullRequest::latestMerged()->simplePaginate(20);
+    	$pullRequests = PullRequest::with('author')->latestMerged()->simplePaginate(20);
 
     	return view('home',[
     		'pullRequests' => $pullRequests,
@@ -28,7 +28,7 @@ class HomeController extends Controller
         });
 
     	$userId = optional(auth()->user())->id;
-    	
+
     	PullRequestViewJob::dispatch($pr->id,$userId);
 
     	return redirect($pr->url);

@@ -48,11 +48,11 @@
                         <div class="flex items-center mt-4">
                             <img
                                 class="w-10 h-10 rounded-full mr-4 shadow-lg"
-                                src="{{ $pr->author_photo }}"
-                                alt="{{ $pr->author_name }}"
+                                src="{{ $pr->author->photo ?? '#' }}"
+                                alt="{{ $pr->author->name ?? '-' }}"
                             >
                             <div class="text-sm">
-                                <p class="text-gray-700 font-bold leading-none">{{ $pr->author_name }}</p>
+                                <p class="text-gray-700 font-bold leading-none">{{ $pr->author->name ?? '-' }}</p>
                                 <p class="text-gray-600">{{ $pr->pr_merged_at->format('Y-m-d H:i') }}</p>
                             </div>
                         </div>
