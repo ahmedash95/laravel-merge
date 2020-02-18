@@ -46,9 +46,12 @@ class FetchPullRequests extends Command
      */
     public function handle(GitHubInterface $command)
     {
+        $this->info('Loading merged PRs');
+
         $output = $command->getMergedPr('laravel/framework');
         $this->logTask('getMergedPr', $output);
 
+        $this->info('parsing');
         $pullRequests = [];
         foreach (explode(PHP_EOL, $output) as $line) {
             $line = trim($line);
@@ -72,8 +75,10 @@ class FetchPullRequests extends Command
             ];
         }
 
+        $this->info('filtering');
         $pullRequests = array_reverse($this->filterExists($pullRequests));
 
+        $this->info('inserting new PRs');
         $this->insertNewPrs($pullRequests);
     }
 
@@ -94,6 +99,7 @@ class FetchPullRequests extends Command
     private function insertNewPrs(array $pullRequests)
     {
         collect($pullRequests)->each(function ($pr) {
+            $this->info('New PR: '. $pr['title']);
             $pullRequest = PullRequest::create([
                 'pr_id' => $pr['id'],
                 'title' => $pr['title'],
