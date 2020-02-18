@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Api\GitHubAPI;
+use App\Notifications\TweetNewPRMerged;
 use App\PullRequest;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -51,5 +52,7 @@ class FetchPullRequestInfo implements ShouldQueue
            'author_photo' => $prInfo['user']['avatar_url'],
            'is_published' => true,
         ]);
+
+        $this->pullRequest->fresh()->notify(new TweetNewPRMerged());
     }
 }

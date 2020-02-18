@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "laravel-notification-channels/twitter": "^3.0",
         "laravel/framework": "^6.2",
         "laravel/horizon": "^3.7",
         "laravel/socialite": "^4.3",

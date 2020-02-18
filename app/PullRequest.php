@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PullRequest extends Model
 {
+    use Notifiable;
+
     public $guarded = [];
 
     public $casts = [
