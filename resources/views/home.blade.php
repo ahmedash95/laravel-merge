@@ -49,7 +49,7 @@
                     <div  x-data="{ open: false }">
                         <button class="bg-green-600 text-white mt-6 py-1 px-3" @click="open = true">Show Details</button>
                         <ul x-show="open" @click.away="open = false">
-                            <span class="transform scale-150 rotate-45 translate-x-full origin-center">@markdown($pr->content) </span>
+                            <span class="transform scale-150 rotate-45 translate-x-full origin-center">@markdown($pr->content)</span>
                         </ul>
                     </div>
 
