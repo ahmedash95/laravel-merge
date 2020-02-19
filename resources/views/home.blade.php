@@ -11,6 +11,7 @@
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93950970-2"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.0/dist/alpine-ie11.js" defer></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -44,6 +45,14 @@
                             {{ $pr->title }}
                         </a>
                     </div>
+                    
+                    <div  x-data="{ open: false }">
+                        <button class="bg-green-600 text-white mt-6 py-1 px-3" @click="open = true">Show Details</button>
+                        <ul x-show="open" @click.away="open = false">
+                            <span class="transform scale-150 rotate-45 translate-x-full origin-center">@markdown($pr->content) </span>
+                        </ul>
+                    </div>
+
                     <div class="flex justify-between">
                         <div class="flex items-center mt-4">
                             <img

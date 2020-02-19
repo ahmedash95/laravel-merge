@@ -83,7 +83,6 @@ class HubCommand implements GitHubInterface
         if (!$this->ensureItDoesNotExist($path)) {
             throw new \Exception('Repository not found: '.$path);
         }
-
         $command = $this->process->command(sprintf('cd %s && hub pr list -L %d --state merged', $path, $limit));
         $command->run($output = new Output($command));
 
