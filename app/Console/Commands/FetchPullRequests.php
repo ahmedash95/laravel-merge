@@ -62,7 +62,8 @@ class FetchPullRequests extends Command
             preg_match('/\#(\d+)\s\s(.*)/', $line, $matches);
 
             if (count($matches) !== 3) {
-                throw new \Exception('Line does not match a correct pull request');
+                $this->error('Could not parse this line: '.$line);
+                continue;
             }
 
             if (in_array($matches[2], PullRequest::blackListTitles)) {
