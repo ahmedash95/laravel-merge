@@ -11,7 +11,6 @@
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93950970-2"></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.0/dist/alpine-ie11.js" defer></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -19,6 +18,11 @@
 
             gtag('config', 'UA-93950970-2');
         </script>
+
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.0/dist/alpine-ie11.js" defer></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body class="bg-gray-300">
         <div id="container" class="w-2/4 m-auto my-16">
@@ -79,8 +83,8 @@
                     </div>
                     <div class="mt-4 px-4 py-2 leading-8" x-show="contentOpen">
                         @if(!empty($pr->content))
-                            <div class>
-                                <span class="transform scale-150 rotate-45 translate-x-full origin-center">@markdown($pr->content)</span>
+                            <div class="overflow-x-auto origin-center">
+                                @markdown($pr->content)
                             </div>
                         @endif
                     </div>
