@@ -25,7 +25,7 @@
         <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body class="bg-gray-300">
-        <div id="container" class="w-2/4 m-auto my-16">
+        <div id="container" class="w-4/5 md:w-2/4 m-auto my-16">
             <h1 class="p-2 mb-8 text text-3xl text-center text-blue-800 bg-white shadow-lg rounded">
                 Laravel Merged
             </h1>
