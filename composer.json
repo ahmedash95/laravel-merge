@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "andreasindal/laravel-markdown": "^3.1",
         "fideloper/proxy": "^4.0",
         "laravel-notification-channels/twitter": "^3.0",
         "laravel/framework": "^6.2",

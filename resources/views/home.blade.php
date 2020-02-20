@@ -11,6 +11,7 @@
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93950970-2"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.0/dist/alpine-ie11.js" defer></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -38,11 +39,23 @@
             </div>
             <div id="pr-list">
             @foreach($pullRequests as $pr)
-                <div id="pr-item" class="bg-white shadow-lg rounded p-2 mb-4">
-                    <div class="text-2xl text-indigo-700 font-thin">
-                        <a href="{{ url('/r/'.$pr->id) }}" target="_block">
-                            {{ $pr->title }}
-                        </a>
+                <div id="pr-item" class="bg-white shadow-lg rounded p-2 mb-4" x-data="{ contentOpen: false }">
+                    <div class="flex justify-between">
+                        <div class="text-2xl text-indigo-700 font-thin">
+                            <a href="{{ url('/r/'.$pr->id) }}" target="_block">
+                                {{ $pr->title }}
+                            </a>
+                        </div>
+                        <div class="text-right mr-4 mt-4" @click="contentOpen = !contentOpen">
+                            @if(!empty($pr->content))
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="!contentOpen">
+                                <path d="M1.41 0.589996L6 5.17L10.59 0.589996L12 2L6 8L0 2L1.41 0.589996Z" fill="black" fill-opacity="0.54"/>
+                            </svg>
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="contentOpen">
+                                <path d="M6 0L0 6L1.41 7.41L6 2.83L10.59 7.41L12 6L6 0Z" fill="black" fill-opacity="0.54"/>
+                            </svg>
+                            @endif
+                        </div>
                     </div>
                     <div class="flex justify-between">
                         <div class="flex items-center mt-4">
@@ -63,6 +76,13 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+                    <div class="mt-4 px-4 py-2 leading-8" x-show="contentOpen">
+                        @if(!empty($pr->content))
+                            <div class>
+                                <span class="transform scale-150 rotate-45 translate-x-full origin-center">@markdown($pr->content)</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
