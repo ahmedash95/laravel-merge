@@ -1,16 +1,30 @@
 @extends('layout')
+@section('title')
+<div class="flex">
+    <div class="flex items-center">
+        <div class="flex-shrink-0 h-10 w-10 mr-4">
+            <img class="h-10 w-10 rounded-full" src="{{ $author->photo ?? '#' }}" alt="{{ $author->name ?? '-' }}" />
+        </div>
+        <h2 class="text-3xl leading-9 font-bold text-white mr-4">
+            <span class="font-thin">Pull Requests Of</span>
+            <span class="text-gray-500">
+                <a href="{{ url('https://github.com/'.$author->name) }}" target="_blank">
+                    {{ '@'.($author->name ?? '-') }}
+                </a>
+            </span>
+        </h2>
+    </div>
+</div>
+@endsection
 @section('content')
 <div class="flex flex-col">
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-        <table class="min-w-full">
+        <table class="min-w-full bg-white">
             <thead>
             <tr>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Title
-                </th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Author
                 </th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Github
@@ -32,18 +46,6 @@
                             @endif
                         </div>
                         <div class="text-sm leading-5 text-gray-500">{{ $pr->pr_merged_at->format('Y-m-d H:i') }}</div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="{{ $pr->author->photo ?? '#' }}" alt="{{ $pr->author->name ?? '-' }}" />
-                        </div>
-                        <div class="ml-4">
-                            <a class="text-sm leading-5 font-medium text-gray-600" href="{{ $pr->author->url() }}">
-                                {{ $pr->author->name ?? '-' }}
-                            </a>
-                        </div>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
