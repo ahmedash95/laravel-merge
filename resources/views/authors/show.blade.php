@@ -84,4 +84,36 @@
         </div>
     </div>
 </div>
+@if($pullRequests->count() > 2)
+<div id="chart" class="mt-8 bg-white">
+    <canvas id="weekley-pr" class="w-full" style="height:200px"></canvas>
+    <script>
+    var ctx = document.getElementById('weekley-pr');
+    var myChart = new Chart(ctx, {
+        "type":"line",
+        "data":{
+            "labels":["{!! $summary->keys()->implode('","') !!}"],
+            "datasets":[{
+                "label":"",
+                "data":[{{ $summary->values()->implode(',') }}],
+                "fill":false,
+                "borderColor":"#2d3748",
+                "lineTension":0.1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: {{ ($max = $summary->max()) + max(1,$max * 10 / 100) }}
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+</div>
+@endif
 @endsection

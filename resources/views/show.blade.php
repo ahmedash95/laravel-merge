@@ -38,7 +38,9 @@
                         <img class="h-10 w-10 rounded-full" src="{{ $pr->author->photo ?? '#' }}" alt="{{ $pr->author->name ?? '-' }}" />
                         </div>
                         <div class="ml-4">
-                            <div class="text-sm leading-5 font-medium text-gray-600">{{ $pr->author->name ?? '-' }}</div>
+                            <a class="text-sm leading-5 font-medium text-gray-600" href="{{ $pr->author->url() }}">
+                                {{ $pr->author->name ?? '-' }}
+                            </a>
                         </div>
                     </div>
                 </td>
