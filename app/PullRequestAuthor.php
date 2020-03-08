@@ -22,8 +22,10 @@ class PullRequestAuthor extends Model
             ->selectRaw('DATE(pr_created_at) created_at, count(*) as total')
             ->where('author_id',$this->id)
             ->groupByRaw('DATE(pr_created_at)')
+            ->orderByDesc('created_at')
             ->limit(7)
             ->get()
+            ->reverse()
             ->mapWithKeys(function($row){
                 return [$row->created_at => $row->total];
             });
