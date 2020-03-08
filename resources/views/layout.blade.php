@@ -33,19 +33,14 @@
                 <div class="flex items-center justify-between h-16 px-4 sm:px-0">
                     <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-32 w-32" src="/lm.svg" alt="logo" />
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline">
-                            <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Pull Requests</a>
-                        </div>
+                        <a href="/"><img class="h-32 w-32" src="/lm.svg" alt="logo" /></a>
                     </div>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
                             @auth
                             <a class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700" href="#">
-                                Weclome {{ auth()->user()->name }}
+                                Welcome {{ auth()->user()->name }}
                             </a>
                             @endauth
                             @guest
@@ -67,14 +62,11 @@
                 </div>
             </div>
             <div :class="{'block': open, 'hidden': !open}" class="hidden border-b border-gray-700 md:hidden">
-                <div class="px-2 py-3 sm:px-3">
-                    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Pull Requests</a>
-                </div>
                 <div class="pt-4 pb-3 border-t border-gray-700">
                     <div class="flex items-center px-5">
                         @auth
                         <a class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700" href="#">
-                            Weclome {{ auth()->user()->name }}
+                            Welcome {{ auth()->user()->name }}
                         </a>
                         @endauth
                         @guest
