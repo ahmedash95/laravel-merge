@@ -1,4 +1,21 @@
 @extends('layout')
+@section('title')
+<div class="flex">
+    <div class="flex items-center">
+        <div class="flex-shrink-0 h-10 w-10 mr-4">
+            <img class="h-10 w-10 rounded-full" src="{{ $author->photo ?? '#' }}" alt="{{ $author->name ?? '-' }}" />
+        </div>
+        <h2 class="text-3xl leading-9 font-bold text-white mr-4">
+            <span class="font-thin">Pull Requests Of</span>
+            <span class="text-gray-500">
+                <a href="{{ url('https://github.com/'.$author->name) }}" target="_blank">
+                    {{ '@'.($author->name ?? '-') }}
+                </a>
+            </span>
+        </h2>
+    </div>
+</div>
+@endsection
 @section('content')
 <div class="flex flex-col">
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -102,18 +119,6 @@
                 </div>
                 <div class="flex justify-between">
                     <div class="pt-2 whitespace-no-wrap">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-6 w-6">
-                                <img class="h-6 w-6 rounded-full" src="{{ $pr->author->photo ?? '#' }}" alt="{{ $pr->author->name ?? '-' }}" />
-                            </div>
-                            <div class="ml-2">
-                                <a class="text-sm leading-5 font-medium text-gray-600" href="{{ $pr->author->url() }}">
-                                    {{ $pr->author->name ?? '-' }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pt-2 whitespace-no-wrap">
                         <a href="{{ url('/r/'.$pr->id) }}" target="_block" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-purple-500">
                             #{{ $pr->pr_id }}
                         </a>
@@ -154,4 +159,36 @@
         {{-- Mobile --}}
     </div>
 </div>
+@if($pullRequests->count() > 2)
+<div id="chart" class="my-8 bg-white w-5/6 m-auto">
+    <canvas id="weekley-pr" class="w-full" style="height:200px"></canvas>
+    <script>
+    var ctx = document.getElementById('weekley-pr');
+    var myChart = new Chart(ctx, {
+        "type":"line",
+        "data":{
+            "labels":["{!! $summary->keys()->implode('","') !!}"],
+            "datasets":[{
+                "label":"",
+                "data":[{{ $summary->values()->implode(',') }}],
+                "fill":false,
+                "borderColor":"#2d3748",
+                "lineTension":0.1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: {{ ($max = $summary->max()) + max(1,$max * 10 / 100) }}
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+</div>
+@endif
 @endsection
