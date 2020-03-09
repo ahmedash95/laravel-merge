@@ -25,23 +25,29 @@
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 flex justify-between">
                     <div>
                         <div class="text-md leading-5 text-gray-900">
-                            {{ $pr->title }}
+                            <a href="{{ url('/r/'.$pr->id) }}" target="_block">
+                                {{ $pr->title }}
+                            </a>
+
+                        </div>
+                       <div class="text-sm leading-5 text-gray-500">{{ $pr->pr_merged_at->format('Y-m-d H:i') }}
                             @if($pr->isToday())
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                                Today
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                | Today
                             </span>
                             @endif
                         </div>
-                        <div class="text-sm leading-5 text-gray-500">{{ $pr->pr_merged_at->format('Y-m-d H:i') }}</div>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="{{ $pr->author->photo ?? '#' }}" alt="{{ $pr->author->name ?? '-' }}" />
+                            <a href="{{ $pr->author->url() }}">
+                                <img class="h-10 w-10 rounded-full" src="{{ $pr->author->photo ?? '#' }}" alt="{{ $pr->author->name ?? '-' }}" />
+                            </a>
                         </div>
                         <div class="ml-4">
-                            <a class="text-sm leading-5 font-medium text-gray-600" href="{{ $pr->author->url() }}">
+                            <a href="{{ $pr->author->url() }}" class="text-sm leading-5 font-medium text-gray-600">
                                 {{ $pr->author->name ?? '-' }}
                             </a>
                         </div>
@@ -91,13 +97,13 @@
                     {{ $pr->title }}
                 </div>
                 <div class="text-sm leading-5 text-gray-500 mt-1 flex">
-                    @if($pr->isToday())
-                    <div class="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                        Today
-                    </div>
-                    @endif
                     <div class="">
-                        {{ $pr->pr_merged_at->format('Y-m-d H:i') }}
+                         {{ $pr->pr_merged_at->format('Y-m-d H:i') }}
+                        @if($pr->isToday())
+                            <div class="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                | Today
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="flex justify-between">
