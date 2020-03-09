@@ -1,4 +1,6 @@
 # Laravel-Merged
+![alt text](https://laravel-merged.com/lm.svg)
+Get latest laravel merged pull requests
 ### installation
 
 #### install dependencies
