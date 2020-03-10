@@ -65,7 +65,7 @@ class FetchPullRequestInfo implements ShouldQueue
            'is_published' => true,
         ]);
 
-        if(!$app->environment('local')) {
+        if(!$app->environment('local') && config('services.twitter.publish_tweets')) {
             $this->pullRequest->fresh()->notify(new TweetNewPRMerged());
         }
     }

@@ -42,6 +42,7 @@ return [
     ],
 
     'twitter' => [
+        'publish_tweets' => env('TWEET_MERGED_PRS',true),
         'consumer_key'    => env('TWITTER_CONSUMER_KEY'),
         'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
         'access_token'    => env('TWITTER_ACCESS_TOKEN'),
