@@ -1,5 +1,9 @@
 # Laravel-Merged
 
+Follow Laravel's merged pull requests.
+
+![Screenshot](screenshot.png)
+
 # Pre-requisites
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) ^2.21.0
 - [Hub](https://hub.github.com/) ^2.14.1
