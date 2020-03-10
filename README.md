@@ -8,7 +8,9 @@ Follow Laravel's merged pull requests.
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) ^2.21.0
 - [Hub](https://hub.github.com/) ^2.14.1
 
-And make sure  your hub command is in `/usr/local/bin/hub` path. also make sure you can clone repositories by hub try below as example.
+Make sure `hub` command is in `/usr/local/bin/hub` path. also make sure you are able to clone repositories using hub.
+
+Try below as example
 ```
 hub clone laravel/framework
 ```
