@@ -16,6 +16,8 @@
         "laravel/horizon": "^3.7",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
+        "livewire/livewire": "^1.0",
+        "spatie/laravel-varnish": "^2.8",
         "symfony/filesystem": "^5.0",
         "symfony/http-client": "^5.0"
     },
