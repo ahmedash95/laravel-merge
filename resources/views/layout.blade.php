@@ -8,6 +8,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        @livewireStyles
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93950970-2"></script>
@@ -43,16 +44,7 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
-                            @auth
-                            <a class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700" href="#">
-                                Weclome {{ auth()->user()->name }}
-                            </a>
-                            @endauth
-                            @guest
-                            <a class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700" href="{{ url('/login') }}">
-                                Login via Github
-                            </a>
-                            @endguest
+                            @livewire('login-component')
                         </div>
                     </div>
                     <div class="-mr-2 flex md:hidden">
@@ -98,5 +90,6 @@
             </div>
         </main>
         </div>
+    @livewireScripts
     </body>
 </html>
