@@ -15,7 +15,7 @@ class LoginController extends Controller
     }
 
     public function doLogin() {
-    	$gitub = Socialite::driver('github')->user();
+    	$gitub = Socialite::driver('github')->stateless()->user();
     	$email = $gitub->email;
     	$user = User::where('email',$email)->first();
     	if(!$user) {
