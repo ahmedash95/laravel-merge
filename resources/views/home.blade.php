@@ -32,7 +32,7 @@
                             </span>
                             @endif
                         </div>
-                        <div class="text-sm leading-5 text-gray-500">{{ $pr->pr_merged_at->format('Y-m-d H:i') }}</div>
+                        <div class="text-sm leading-5 text-gray-500">{{ $pr->pr_merged_at ? $pr->pr_merged_at->format('Y-m-d H:i') : ''}}</div>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -97,7 +97,7 @@
                     </div>
                     @endif
                     <div class="">
-                        {{ $pr->pr_merged_at->format('Y-m-d H:i') }}
+                        {{ $pr->pr_merged_at ? $pr->pr_merged_at->format('Y-m-d H:i') : '' }}
                     </div>
                 </div>
                 <div class="flex justify-between">
