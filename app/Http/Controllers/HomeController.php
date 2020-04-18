@@ -14,8 +14,11 @@ class HomeController extends Controller
 
     public function __invoke() {
 
-    	$pullRequests = PullRequest::with('author')->latestMerged()->simplePaginate(20);
-
+        $pullRequests = PullRequest::query()
+                ->with('author')
+                ->withValidAuthor()
+                ->latestMerged()
+                ->simplePaginate(20);
     	return view('home',[
     		'pullRequests' => $pullRequests,
     	]);

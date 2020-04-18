@@ -35,7 +35,12 @@ class PullRequest extends Model
         return $this->pr_merged_at->format('Y-m-d') === Carbon::today()->format('Y-m-d');
     }
 
-    public function ScopeLatestMerged($query)
+    public function scopeWithValidAuthor($query)
+    {
+        return $query->whereNotNull('author_id');
+    }
+
+    public function scopeLatestMerged($query)
     {
         return $query->orderByDesc('pr_merged_at');
     }

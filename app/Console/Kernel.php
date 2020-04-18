@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('pr:fetch')
                  ->hourly();
+
+        $schedule->command('pr:missing-authors')
+                 ->hourly();
     }
 
     /**
